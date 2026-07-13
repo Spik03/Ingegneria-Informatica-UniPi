@@ -1,0 +1,9 @@
+body {
+    display: flex !important;
+    flex-direction: column;
+    padding-top: 0;
+}
+
+strong{
+    animation: changeColor 10s infinite; 
+}

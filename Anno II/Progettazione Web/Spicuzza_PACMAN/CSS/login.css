@@ -1,0 +1,70 @@
+body{
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+}
+
+form{
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border: 4px solid blue;
+    border-radius: 10px;
+    width: fit-content;
+    color: whitesmoke;
+}
+
+.Flex-r{
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+input{
+    font-family: 'pixel', Impact;
+    background: whitesmoke;
+    width: 10em;
+}
+
+input:invalid:not(:focus){
+    background-color: tomato;
+}
+
+#last{
+    margin: auto;
+}
+
+.Login_form{
+    background: none;
+    border: none;
+    color: whitesmoke;
+    font-family: 'pixel', Impact;
+    margin-right: 0.5rem;
+}
+
+.Login_form:hover{
+    color: yellow;
+}
+
+#messaggio{
+    color: red !important;
+    font-size: small !important;
+}
+
+#div_messaggio{
+    display:none;
+    margin-top: 0.5rem;
+}
+
+#messaggio:hover{
+    color: whitesmoke !important;
+}
+
+#titolo{
+    color: yellow;
+    font-size: xx-large;
+}
+
+#container{
+    text-align: center;
+}

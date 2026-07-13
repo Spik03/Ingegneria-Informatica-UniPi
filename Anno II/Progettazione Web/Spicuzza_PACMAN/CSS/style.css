@@ -1,0 +1,299 @@
+@font-face {
+    font-family: 'pixel';
+    src: url('../Font/PressStart2P-Regular.ttf') format('truetype');
+}
+
+body {
+    display: flex;
+    margin: 0;
+    padding: 2rem;
+    background-color: black;
+    font-family: 'pixel', Impact;
+    color: whitesmoke;
+}
+
+#div{
+    width: 100%;
+}
+
+#mappa {
+    margin: auto;
+    align-self: center;
+    border-spacing: 0;
+    border-radius: 10px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.Cella {
+    height: 1.3rem;
+    width: 1.3rem;
+    text-align: center;
+    font-size: xx-small;
+}
+
+.muro{
+    z-index: 0;
+}
+
+.Cancello{
+    background:
+        linear-gradient(whitesmoke 80%, black 0) 0 0 / 100% 20px,
+        linear-gradient(whitesmoke 80%, black 0) 0 100% / 100% 20px;
+    background-repeat: no-repeat;
+    
+    background-position: center;
+}
+
+.Punto, .Pillola {
+    color: yellow;
+}
+
+.Pillola {
+    font-size: medium;
+}
+
+.P, .R, .B, .V, .O {
+    font-weight: bolder;
+    font-size: medium;
+}
+
+
+.P {
+    /* pacman */
+    background-image: url('../Sprite/Pacman/P.gif') !important;
+}
+
+.R {
+    /* fantasma rosso */
+    background-image: url('../Sprite/Fantasmi/R.png') !important;
+}
+
+.B {
+    /* fantasma blu */
+    background-image: url('../Sprite/Fantasmi/B.png') !important;
+}
+
+.V {
+    /* fantasma rosa */
+    background-image: url('../Sprite/Fantasmi/V.png') !important;
+}
+
+.O {
+    /* fantasma arancione */
+    background-image: url('../Sprite/Fantasmi/O.png') !important;
+}
+
+.Vulnerabile1 {
+    background-image: url('../Sprite/Fantasmi/Vulnerabile.png') !important;
+}
+
+.Vulnerabile2 {
+    background-image: url('../Sprite/Fantasmi/Vulnerabile2.png') !important;
+}
+
+.Arancia, .Ciliegia, .Fragola, .Mela, .Melone, .Galassia, .Campana, .Key,
+.P, .R, .B, .V, .O {
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.P, .R, .B, .V, .O{
+    z-index: 2;
+}
+
+.Arancia, .Ciliegia, .Fragola, .Mela, .Melone, .Galassia, .Campana, .Key{
+    z-index: 1;
+}
+
+.Ciliegia {
+    background-image: url('../Sprite/Frutta/Ciliegia.png');
+}
+
+.Arancia {
+    background-image: url('../Sprite/Frutta/Arancia.png');
+}
+
+.Fragola {
+    background-image: url('../Sprite/Frutta/Fragola.png');
+}
+
+.Mela {
+    background-image: url('../Sprite/Frutta/Mela.png');
+}
+
+.Melone {
+    background-image: url('../Sprite/Frutta/Melone.png');
+}
+
+.Galassia {
+    background-image: url('../Sprite/Frutta/Galassia.png');
+}
+
+.Campana {
+    background-image: url('../Sprite/Frutta/Campana.png');
+}
+
+.Key {
+    background-image: url('../Sprite/Frutta/Key.png');
+}
+
+#GameOver {
+    position: absolute;
+    /* centra orizzontalmente in base alla larghezza dello schermo */
+    left: 50%;
+    /* centra orizzontalmente in base alla larghezza del label*/
+    transform: translateX(-55%);
+    
+    z-index: 2;
+
+    background-color: black;
+    animation: changeColor 5s infinite;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+@media (max-width: 1200px) {
+    .info{
+        display: none;
+        width: 0px;
+    }
+}
+
+.info{
+    position: relative;
+    text-align: center;
+    width: 29%;
+    margin:auto;
+    padding: 0.5em;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: whitesmoke;
+}
+
+.info tr{
+    height: max-content;
+    margin-top: 10px;
+}
+
+.info th, td{
+    height: 1.50em;
+}
+
+.info th{
+    text-align: left;
+    background-position: center;
+    background-size: 20% 100%;
+    transform: scaleX(-1);
+}
+
+.Normale{
+    transform: none !important;
+}
+
+.info td{
+    text-align: center;
+    width: 5em;
+}
+
+@keyframes changeColor {
+    0% { color: yellow; }
+    12% { color: Red; }
+    38% { color: Cyan; }
+    62% { color: pink; }
+    88% { color: orange; }
+    100% { color: yellow; }
+}
+
+#start{
+    z-index: 2;
+    top: 47%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    font-size: xx-large;
+    animation: changeColor 10s infinite;
+}
+
+#start label{
+    background-color: black;
+}
+
+.Spazio{
+    height: 5px;
+}
+
+#general{
+    font-size: small;
+}
+
+#regole{
+    animation: changeColor 10s infinite;
+    position: absolute;
+    z-index: 3;
+}
+
+#regoleOff{
+    color: red;
+    position: absolute;
+    z-index: 3;
+}
+
+dialog{
+    display: flex;
+    flex-direction: column;
+    z-index: 4; 
+    width: 835px;
+    height: 650px;
+    background-color: black;
+    
+}
+
+#closeDialog{
+    color: whitesmoke;
+    background-color: black; 
+    font-family: 'pixel', Impact;
+    font-weight: bold;
+    border: none;
+    z-index: 5;
+}
+
+dialog iframe{
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+#closeDialog, .newRecord, .c0, .c1, .c2{
+    animation: changeColor 10s infinite; 
+}
+
+#g_table{
+    width: 18rem;
+}
+
+#g_table td{
+    width: 13em !important;
+    text-align: left;
+}
+
+#g_table th{
+    width: 8em !important;
+}
+
+#last{
+    margin-bottom: 5rem;
+}
+
+#exit{
+    z-index: 4;
+    position: absolute;
+}
+
+#exit:hover{
+    color: yellow;
+}
