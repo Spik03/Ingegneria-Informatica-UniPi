@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrattore Casuale di Domande - Elettronica</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+        }
+        h1 { color: #2c3e50; font-size: 24px; margin-bottom: 25px; }
+        .domanda { font-size: 18px; color: #34495e; min-height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; line-height: 1.6; font-weight: 500; }
+        .contatore { font-size: 12px; color: #95a5a6; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #27ae60; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Estrattore Casuale di Domande</h1>
+    <div id="contatore" class="contatore">Pronto</div>
+    <div id="domanda" class="domanda">Premi il pulsante per estrarre una domanda casuale dall'intero programma di teoria.</div>
+    <button onclick="estraiDomanda()">Estrai Domanda Casuale</button>
+</div>
+
+<script>
+const archivioDomande = [
+    "Descrivi le ipotesi fisiche fondamentali del modello di Drude per la conduzione nei metalli e nei semiconduttori.",
+    "Corrente di drift, velocità di drift e calcolo dell'espressione della densità di corrente di drift: ricava i passaggi matematici principali.",
+    "Cos'è un materiale semiconduttore? Spiega il concetto di lacuna e come si calcola la concentrazione di elettroni liberi nel silicio intrinseco.",
+    "Legge di azione di massa: quale relazione costante stabilisce tra elettroni e lacune all'equilibrio termodinamico e come varia quantitativamente con la temperatura?",
+    "Spiega in dettaglio il meccanismo di drogaggio (tipo n e tipo p) e quali specie droganti si utilizzano nel silicio.",
+    "Analizza l'influenza della temperatura sulla conducibilità elettrica nel silicio intrinseco rispetto a quello drogato.",
+    "Spiega la forza motrice microscopica della corrente di diffusione e scrivi le relative formule analitiche.",
+    "Relazione di Einstein: quale legame stabilisce tra la costante di diffusione (D) e la mobilità (&mu;) dei portatori di carica?",
+    "Ricavare l'unità di misura della costante di diffusione partendo da un modello analitico, indicando la formula e il verso del flusso.",
+    "Descrivi la formazione della regione di svuotamento e della barriera di potenziale in una giunzione p-n a circuito aperto.",
+    "Perché il potenziale di built-in (Vbi) della giunzione p-n non può essere direttamente osservato o misurato dall'esterno collegando un voltmetro?",
+    "Spiega il funzionamento della giunzione p-n in polarizzazione diretta e inversa introducendo la legge di Shockley e il coefficiente di non idealità n.",
+    "Fenomeno di breakdown nella giunzione p-n: descrivi in dettaglio l'effetto Zener, l'effetto valanga e come la temperatura influenza la tensione di rottura nei due casi.",
+    "Descrivi le caratteristiche principali del Diodo Zener e il suo simbolo circuitale.",
+    "Spiega il metodo della Retta di Carico per la determinazione del punto di lavoro di un bipolo non lineare.",
+    "Descrivi i circuiti equivalenti per grandi segnali del diodo: il modello ideale, il modello a caduta costante e il modello lineare a tratti.",
+    "Qual è la metodologia per risolvere un circuito contenente più diodi tramite formulazione e verifica delle ipotesi di lavoro?",
+    "Disegna e analizza le porte logiche AND e OR a diodi, evidenziando i problemi principali della logica a diodi (corrente assorbita, degrado dei livelli logici, mancanza della porta NOT).",
+    "Analizza il circuito del rilevatore di picco (raddrizzatore con filtro capacitivo) e spiega perché, in assenza di un carico resistivo in parallelo, il condensatore non ha effetto sul ripple dopo il primo picco.",
+    "Analizza il funzionamento di un raddrizzatore a doppia semionda con trasformatore a presa centrale nei due semiperiodi.",
+    "Descrivi il funzionamento del raddrizzatore a ponte di Graetz e analizza il percorso della corrente.",
+    "Peak Inverse Voltage (PIV): cos'è questo parametro e perché è critico nel progetto e nel dimensionamento di un circuito raddrizzatore?",
+    "Regolatore di tensione con Zener: descrivi il circuito e analizza cosa accade analiticamente se la resistenza di carico è molto grande, normale oppure nulla.",
+    "Modello per piccoli segnali del diodo: definisci le condizioni di applicabilità e i limiti di validità dell'approssimazione.",
+    "Deriva analiticamente l'espressione della resistenza differenziale (rd) nel modello per piccoli segnali partendo dallo sviluppo in serie di Taylor.",
+    "Spiega il principio di funzionamento del transistore bipolare a giunzione (BJT) e le differenze tra npn e pnp.",
+    "Perché l'emettitore di un BJT è geometricamente molto più drogato della base?",
+    "Descrivi le quattro regioni di funzionamento del BJT basandoti sulle polarizzazioni delle giunzioni nel modello di Ebers-Moll.",
+    "Modello di Ebers-Moll in Zona Attiva Diretta: scrivi le equazioni costitutive e il circuito equivalente.",
+    "Modello di Ebers-Moll per NPN: come cambiano le equazioni e le condizioni sulle correnti se il transistore BJT entra in saturazione?",
+    "Modello di Ebers-Moll per PNP: descrivi come ricavare la corrente di base (IB) in funzione della corrente di emettitore (IE) nella zona attiva inversa.",
+    "Effetto Early nel BJT: in che modo la tensione collettore-emettitore influenza la corrente di collettore? Spiega la fenomenologia e i fondamenti fisici basati sulla modulazione della base.",
+    "Descrivi il modello per ampi segnali del transistore BJT per le regioni di interdizione, zona attiva e saturazione.",
+    "Analizza la stabilità del circuito di polarizzazione del BJT a 4 resistenze e spiega il ruolo della resistenza di degenerazione di emettitore (RE) e il prezzo che si paga sul guadagno.",
+    "&beta; di saturazione (&beta;sat): qual è la differenza concettuale e quantitativa tra il &beta;F in zona attiva e il &beta; valutato quando il BJT è saturo?",
+    "Deriva la caratteristica di trasferimento di tensione (VTC) di un circuito invertitore realizzato con un BJT con carico resistivo.",
+    "Descrivi il circuito equivalente per piccoli segnali a parametri h (ibridi) a emettitore comune e spiega la valutazione del parametro hre.",
+    "Calcola il guadagno di tensione, di corrente, la resistenza d'ingresso e d'uscita per uno stadio amplificatore a emettitore comune con e senza condensatore di bypass sull'emettitore.",
+    "Analizza lo stadio amplificatore a collettore comune (inseguitore di emettitore) ricavando guadagni e resistenze viste.",
+    "Descrivi la struttura del condensatore MOS e spiega i tre regimi di funzionamento: accumulazione, svuotamento e inversione.",
+    "Spiega il fenomeno del pinch-off (strozzamento del canale) nel MOSFET e scrivi le relazioni analitiche tra corrente e tensioni nella zona di triodo e nella zona di saturazione.",
+    "Regione di Triodo nel MOSFET: quali sono le precise condizioni geometriche e sulle tensioni applicate affinché un NMOS lavori in questa zona?",
+    "Effetto di modulazione di canale nel MOSFET (&lambda;): a quale fenomeno fisico del BJT corrisponde? Spiega perché la corrente aumenta al variare di Vds in saturazione.",
+    "Tensione di soglia (VT del MOSFET): qual è la sua definizione fisica e qual è la differenza concettuale rispetto alla tensione termica del diodo?",
+    "Body Effect (Effetto Body): in un MOSFET integrato, come influisce la tensione tra Source e Bulk (VSB) sulla tensione di soglia del dispositivo?",
+    "Transconduttanza (gm): cosa rappresenta fisicamente questo parametro e come si calcola analiticamente sia nel BJT che nel MOSFET?",
+    "Deriva analiticamente le espressioni dei parametri per piccoli segnali (gm, rd) per un MOSFET operante in zona di saturazione.",
+    "Analizza lo stadio amplificatore a source comune con e senza resistenza di source, calcolandone il guadagno di piccoli segnali.",
+    "Analizza lo stadio amplificatore a drain comune (inseguitore di source) e ricava la formula per il calcolo della resistenza vista guardando dentro il terminale di source.",
+    "Spiega lo scopo degli amplificatori multistadio e descrivi l'effetto di carico di ciascuno stadio a valle su quello a monte.",
+    "Poli non interagenti: secondo il metodo delle resistenze viste, quando due condensatori si definiscono \"non interagenti\" per il calcolo delle frequenze di taglio?",
+    "Teorema di Miller: in che modo questo teorema semplifica l'analisi di un'impedenza collegata tra i nodi d'ingresso e d'uscita di un amplificatore invertente?",
+    "Teoria della reazione: elenca le tre ipotesi semplificative della trattazione ideale e spiega come varia l'impedenza di uscita se si esegue un prelievo di tensione.",
+    "Definisci le tensioni a modo comune e a modo differenziale in un amplificatore differenziale. Che cos'è il CMRR, come viene calcolato e perché un valore elevato è desiderabile?",
+    "Ricava le formule per il guadagno differenziale e per il guadagno a modo comune in un amplificatore differenziale a transistori.",
+    "Amplificatore differenziale a 4 resistenze con Op-Amp: descrivi il circuito ed effettua il calcolo delle resistenze viste dagli ingressi.",
+    "Elenca le caratteristiche ideali di un amplificatore operazionale e giustifica matematicamente e fisicamente il principio del corto circuito virtuale.",
+    "Perché non è possibile usare direttamente un singolo amplificatore operazionale ideale ad anello aperto per fare la differenza esatta di due segnali senza reti di retroazione?",
+    "Disegna e ricava la funzione di trasferimento dei circuiti base con Op-Amp: amplificatore invertente, amplificatore non invertente e sommatore invertente.",
+    "Inseguitore di tensione (Buffer) con Op-Amp: quali sono le sue caratteristiche di impedenza d'ingresso e d'uscita e perché è utile nei circuiti?",
+    "Integratore di Miller con Op-Amp: ricava Vo usando sia il metodo nel dominio del tempo che quello di Laplace. Spiega perché l'uscita è instabile (criterio BIBO) e come viene impiegato nei circuiti ADC.",
+    "Regolatore di tensione lineare serie: descrivi il circuito, il funzionamento ideale e calcola analiticamente la resistenza vista in reazione.",
+    "Regolatore lineare serie: perché si usa un doppio condensatore (in ingresso e in uscita)? Spiega solo tramite ragionamento come ottenere Vo = 5 V se hai un diodo Zener di riferimento con Vz = 4.7 V.",
+    "Descrivi le caratteristiche e le differenze applicative dei regolatori monolitici commerciali delle famiglie 78xx e 79xx.",
+    "Regolatore di corrente realizzato con un regolatore di tensione monolitico (es. serie 75xx): descrivi il circuito e spiega qual è il limite massimo per la resistenza di carico.",
+    "Spiega il principio di funzionamento e l'architettura di un regolatore switching di base (regolatore switch base).",
+    "Regolatore switching Forward: analizza il circuito e determina l'andamento della tensione su L, R e C con lo switch chiuso e con lo switch aperto. Evidenzia le differenze di efficienza rispetto al lineare serie.",
+    "Alimentatore Switching Flyback: descrivi il principio di funzionamento, i legami analitici e i vantaggi dell'isolamento galvanico ad alta frequenza.",
+    "Definisci i concetti di Margine di Rumore, ritardo di propagazione, Fan-In, Fan-Out e il prodotto Potenza-Ritardo (PDP) per una generica porta logica.",
+    "Spiega il fenomeno della rigenerazione dei livelli logici in una catena di inverter e qual è la condizione necessaria sulla VTC affinché questo si verifichi.",
+    "Soglia logica (V*): come viene definita e individuata graficamente sulla Caratteristica di Trasferimento (VTC) di un inverter?",
+    "Margini di Rumore (NMH e NML) nell'inverter CMOS: come si calcolano graficamente e analiticamente partendo dai punti a pendenza unitaria (dVout/dVin = -1) della VTC?",
+    "Inverter CMOS: descrivi la struttura circuitale e analizza in dettaglio la potenza dissipata sia in regime statico che in regime dinamico (derivazione della formula P = C * VDD^2 * f).",
+    "Spiega il principio di dualità per la sintesi delle reti di Pull-Up (PUN) e Pull-Down (PDN) in logica CMOS. Fai l'esempio di una porta NAND e di una NOR a due ingressi.",
+    "Come si effettua il dimensionamento dei rapporti W/L dei transistori in una porta CMOS complessa? Perché la porta NAND occupa meno area su silicio rispetto alla NOR?",
+    "Descrivi il circuito di protezione dalle scariche elettrostatiche (ESD) integrato all'ingresso delle porte logiche CMOS.",
+    "Analizza la carica e la scarica di un condensatore di carico tramite un pass-transistor NMOS e un pass-transistor PMOS.",
+    "Dimostra analiticamente che un pass-transistor NMOS non si comporta come un interruttore ideale quando deve trasmettere un '1' logico (problema della perdita della soglia).",
+    "Descrivi la struttura e le proprietà di trasmissione di un Transmission Gate (pass-gate) realizzato con NMOS e PMOS in parallelo.",
+    "Analizza le condizioni di equilibrio di un latch bistabile a due invertitori, descrivendo gli stati stabili, lo stato metastabile e il comportamento in funzione della soglia di VDD/2.",
+    "Flip-Flop SR: descrivi il procedimento di lettura e di scrittura, mostrando le 2 possibili realizzazioni circuitali in tecnologia CMOS.",
+    "Flip-Flop D Edge Triggered (struttura Master-Slave): descrivi il principio di funzionamento e specifica quale capacità parassita mantiene fisicamente memorizzato il dato durante la commutazione del clock.",
+    "Descrivi la struttura interna di un oscillatore ad anello realizzato con inverter CMOS: spiega come si utilizza per il calcolo del tempo di propagazione (tp), perché si chiama guadagno ad anello e se la formula 2*n*tp è sempre valida.",
+    "Descrivi la struttura interna del temporizzatore NE555. Spiega il suo funzionamento come circuito monostabile CMOS.",
+    "Analizza l'NE555 come multivibratore astabile ed effettua il calcolo del periodo totale di oscillazione e del duty cycle.",
+    "Descrivi la struttura interna della famiglia logica TTL con stadio d'uscita Totem-Pole.",
+    "Disegna un invertitore in logica TTL e spiega come può essere generalizzato modificando il transistore multi-emettitore per ottenere una porta logica NAND.",
+    "Descrivi l'architettura generale e l'organizzazione matriciale (righe e colonne) delle memorie a semiconduttore RAM e ROM.",
+    "Disegna lo schema circuitale di una cella di memoria SRAM a 6 transistori (6T) e descrivi accuratamente le fasi di lettura e di scrittura.",
+    "Disegna lo schema di una cella di memoria DRAM (1T-1C). Descrivi i processi di lettura (charge sharing) e scrittura e spiega perché è necessario il refresh periodico.",
+    "Sense Amplifier nelle memorie: spiega il funzionamento dettagliato. Perché si usa un PMOS collegato a VDD e un NMOS a ground? Perché lo stato metastabile è importante per il suo funzionamento?",
+    "Descrivi la funzione e lo schema elettrico del circuito di precarica delle bit line nelle memorie ad accesso casuale.",
+    "Analizza la temporizzazione completa di una fase di lettura in una memoria RAM, dall'attivazione della word line all'uscita del dato.",
+    "Descrivi la struttura circuitale di un decoder degli indirizzi di riga. Come va modificato per ottenere un decoder degli indirizzi di colonna e perché è necessaria questa modifica?",
+    "Trattazione sul Gate Flottante: spiega il principio di memorizzazione non volatile della cella EPROM e perché si utilizza la luce UV per la cancellazione del dato.",
+    "Descrivi la struttura del transistore FLOTOX e spiega come viene impiegato per permettere la scrittura e la cancellazione elettrica del singolo bit in una memoria EEPROM.",
+    "Definisci la caratteristica ingresso-uscita ideale di un convertitore Digitale/Analogico (DAC) e confronta l'architettura a pesi binari con la rete a scala R-2R.",
+    "Definisci la caratteristica ideale di un convertitore Analogico/Digitale (ADC) ed effettua il calcolo dell'errore di quantizzazione.",
+    "Convertitore A/D a singola rampa: descrivi lo schema circuitale, il principio di funzionamento ed effettua i calcoli del tempo di conversione.",
+    "Convertitore A/D a doppia rampa: mostra l'andamento grafico della tensione sull'integratore e ricava analiticamente il risultato finale dimostrando l'indipendenza da R e C.",
+    "Convertitore ADC ad approssimazioni successive (SAR): spiega l'algoritmo di ricerca binaria e l'architettura del circuito.",
+    "Convertitore ADC Flash: calcola il numero di componenti hardware necessari per bit. Elenca vantaggi, svantaggi, come migliorarlo (due step/sub-ranging) e spiega perché si usa un amplificatore all'ingresso.",
+    "Codifica Termometrica: in quale specifica architettura di convertitore ADC viene utilizzata e come funziona la scala di soglie dei comparatori?"
+];
+
+function estraiDomanda() {
+    const totale = archivioDomande.length;
+    const indice = Math.floor(Math.random() * totale);
+    const selezione = archivioDomande[indice];
+    
+    document.getElementById('contatore').innerText = `Domanda ${indice + 1} di ${totale}`;
+    document.getElementById('domanda').innerText = selezione;
+}
+</script>
+
+</body>
+</html>
