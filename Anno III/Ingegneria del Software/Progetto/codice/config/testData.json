@@ -1,0 +1,52 @@
+[
+  {
+    "matricola": "123456",
+    "corsoDiLaurea": "T. Ing. Informatica",
+    "dataLaurea": "2023-01-04",
+    "media": 23.655,
+    "cfuMedia": 174,
+    "cfuCurriculari": 177,
+    "bonus": false,
+    "mediaInformatica": 23.667
+  },
+  {
+    "matricola": "345678",
+    "corsoDiLaurea": "T. Ing. Informatica",
+    "dataLaurea": "2023-01-04",
+    "media": 25.564,
+    "cfuMedia": 165,
+    "cfuCurriculari": 177,
+    "bonus": true,
+    "mediaInformatica": 25.75
+  },
+  {
+    "matricola": "234567",
+    "corsoDiLaurea": "M. Ing. Elettronica",
+    "dataLaurea": "2023-01-04",
+    "media": 24.559,
+    "cfuMedia": 102,
+    "cfuCurriculari": 102,
+    "bonus": null,
+    "mediaInformatica": null
+  },
+  {
+    "matricola": "456789",
+    "corsoDiLaurea": "M. Ing. delle Telecomunicazioni",
+    "dataLaurea": "2023-01-04",
+    "media": 32.625,
+    "cfuMedia": 96,
+    "cfuCurriculari": 96,
+    "bonus": null,
+    "mediaInformatica": null
+  },
+  {
+    "matricola": "567890",
+    "corsoDiLaurea": "M. Cybersecurity",
+    "dataLaurea": "2023-01-04",
+    "media": 24.882,
+    "cfuMedia": 102,
+    "cfuCurriculari": 120,
+    "bonus": null,
+    "mediaInformatica": null
+  }
+]

@@ -1,0 +1,18 @@
+button{
+    background: none;
+    border: none;
+    color: white;
+}
+
+button:hover{
+    font-weight: bold;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
+
+p{
+    display: inline;
+}

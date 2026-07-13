@@ -1,0 +1,115 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: blue;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    border: 3px solid royalblue !important;
+    height: 60%;
+    width: 75%;
+}
+
+#title{
+    font-size: 35px !important;
+    margin-bottom: 10px;
+}
+
+p{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#container{
+    display:flex;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+}
+
+.column{
+    width: 33%;
+    height: 100%;
+}
+
+.lateral{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#matricole_titolo{
+    margin-bottom: 5px;
+}
+
+#matricole{
+    border: 2px solid royalblue !important;
+    width: 45vh;
+    height: 35vh;
+}
+
+#cdLSelezione{
+    border: 2px solid royalblue !important;
+    width: 100%;
+}
+
+option{
+    background-color: white !important;
+}
+
+#data{
+    border: 2px solid royalblue !important;
+}
+
+#cdl_titolo{
+    margin-bottom: 5px;
+}
+
+#data_container{
+    margin-top: 50px;
+}
+
+.bottone{
+    color: blue;
+    font-size: 25px;
+    width: 80%;
+    margin-bottom: 40px;
+}
+
+.crea_invia{
+    background: skyblue;
+    border: outset;
+}
+
+.crea_invia:hover{
+    border: inset;
+}
+
+#crea{
+    margin-top: 60px;
+}
+
+#apri{
+    background: none !important;
+    border: none !important;
+    text-decoration: underline;
+}
+
+#apri:hover{
+    text-decoration: none;
+}
+
+#info{
+    margin-top: -5px;
+    color: chocolate;
+    font-size: 20px;
+}
