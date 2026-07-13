@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="vBox_desc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipi.spicuzza.client.DescrizioneController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="poster" fitHeight="278.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" />
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefWidth="415.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="580.0">
+                     <children>
+                        <Text fx:id="descrizione" layoutX="25.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="33.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="voteAverage" alignment="CENTER" text="Label" textAlignment="CENTER" />
+            <Label fx:id="voteCount" alignment="CENTER" text="Label" textAlignment="CENTER" />
+            <Label fx:id="adult" alignment="CENTER" text="Label" textAlignment="CENTER" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
