@@ -35,7 +35,7 @@ void* tr_code(void* arg){
 }
 
 void stampa(const char* msg, int* buffer){
-	printf(msg); 
+	printf("%s", msg); 
 	for(int i=0; i<S;++i)
 		printf(" %d",buffer[i]);
 	printf("\n");
@@ -79,6 +79,9 @@ int main(){
         	pthread_join(tr[i], NULL);
 
 	stampa("2) Stato Finale:",buffer);
-
+	
+	pthread_mutex_destroy(&M);
+	pthread_cond_destroy(&barrier);
+	pthread_cond_destroy(&last);
 	pthread_exit(NULL);
 }
